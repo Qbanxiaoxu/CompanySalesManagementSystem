@@ -232,7 +232,7 @@
                     <table>
                         Identity:<tr>
                         <td><input type="radio" name="identity" value="customer"/>client</td>
-                        <td><input type="radio" name="identity" value="sales staff"/>sales staff</td>
+                        <td><input type="radio" name="identity" value="salesstaff"/>sales staff</td>
                         <td><input type="radio" name="identity" value="manager"/>manager</td>
                     </tr>
                     </table>
@@ -253,7 +253,7 @@
     function login(){
         let xhr = new XMLHttpRequest();
         xhr.onreadystatechange=function (){
-            // console.log(this.responseText)
+            console.log(this.responseText)
             if(this.readyState==4 && this.status==200){
                 alert(this.responseText);
             }
@@ -261,7 +261,7 @@
                 alert(this.status)
             }
         }
-        xhr.open("POST","ConnectDatabase",true);
+        xhr.open("POST","LoginInformationVerification",true);
         xhr.send();
     }
 </script>
