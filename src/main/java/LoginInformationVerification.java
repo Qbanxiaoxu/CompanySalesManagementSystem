@@ -28,7 +28,7 @@ public class LoginInformationVerification extends HttpServlet {
         String sqlName="";String sqlTable="";String sqlPassword="";
         // 记录登录者身份
         int ident=0;
-        if(identity.length()==0){
+        if(identity==null){
             loginStatus+="Please select a login identity!";
         }
         else if (identity.equals("client")){
@@ -41,7 +41,7 @@ public class LoginInformationVerification extends HttpServlet {
         }
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/sales_management","administrators","000000");
+            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/sales_management","administrator","000000");
             String sql="SELECT * FROM "+sqlTable;
             ps=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             rs=ps.executeQuery(sql);
@@ -53,19 +53,22 @@ public class LoginInformationVerification extends HttpServlet {
                 if (nm.equals(username) && pw.equals(password)){
                     if (ident==1) {
                         response.sendRedirect("clientInterface.html");
+                        break;
                     } else if (ident==2) {
                         response.sendRedirect("salesStaffInterface.html");
+                        break;
                     } else if (ident==3) {
                         response.sendRedirect("administratorInterface.html");
+                        break;
                     }
                 }
             }
-            loginStatus+="The user name or password is incorrect!";
+            loginStatus+="The user name or password is incorrect!Please login again.";
             // 完成后关闭
+            out.print(loginStatus);
             rs.close();
             ps.close();
             conn.close();
-            out.print(loginStatus);
         } catch (SQLException | ClassNotFoundException e) {
             throw new RuntimeException(e);
         }

@@ -202,7 +202,7 @@
         <div class="user singinBx">
             <div class="imgBx"><img src="https://cdn.pixabay.com/photo/2018/08/14/13/23/ocean-3605547_1280.jpg" alt=""></div>
             <div class="formBx">
-                <form action="">
+                <form action="LoginInformationVerification" method="post" target="_blank">
                     <h2>Sign In</h2>
                     <input type="text" name="username" placeholder="Username">
                     <input type="password" name="password" placeholder="Password">
@@ -213,7 +213,7 @@
                             <td><input type="radio" name="identity" value="manager"/>manager</td>
                         </tr>
                     </table>
-                    <input type="submit" name="" value="Sign in" onclick="login()">
+                    <input type="submit" name="" value="Sign in">
                     <p class="signup">New to this?<a href="#" onclick="topggleForm();">Sign up-></a></p>
                 </form>
             </div>
@@ -249,20 +249,6 @@
     function topggleForm(){
         var container = document.querySelector('.container');
         container.classList.toggle('active');
-    }
-    function login(){
-        let xhr = new XMLHttpRequest();
-        xhr.onreadystatechange=function (){
-            console.log(this.responseText)
-            if(this.readyState==4 && this.status==200){
-                alert(this.responseText);
-            }
-            else{
-                alert(this.status)
-            }
-        }
-        xhr.open("POST","LoginInformationVerification",true);
-        xhr.send();
     }
 </script>
 </body>
