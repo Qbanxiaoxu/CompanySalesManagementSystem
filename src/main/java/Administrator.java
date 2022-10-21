@@ -15,17 +15,29 @@ public class Administrator {
     Administrator(int id,String nm,String pw,String gd,String em,String addr){
         ID=id;name=nm;password=pw;gender=gd;email=em;address=addr;
     }
-    public void getID(String nm,String pw){
+    public void setID(){
 
     }
-    public void getGender(String nm,String pw){
-
+    public void setName(){}
+    public void setPassword(){}
+    public void setGender(){}
+    public void setEmail(){}
+    public void setAddress(){}
+    public int getID(String nm,String pw) throws SQLException {
+        String sql="SELECT aid FROM administrators WHERE aname="+nm+" AND apassword="+pw;
+        return new ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","administrators","000000",sql).resultSet().getInt("aid");
     }
-    public void getAddress(String nm,String pw){
-
+    public String getGender(String nm,String pw) throws SQLException {
+        String sql="SELECT agender FROM administrators WHERE aname="+nm+" AND apassword="+pw;
+        return new ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","administrator","000000",sql).resultSet().getString("agender");
     }
-    public void getEmail(String nm,String pw){
-
+    public String  getAddress(String nm,String pw) throws SQLException {
+        String sql="SELECT aadress FROM administrators WHERE aname="+nm+" AND apassword="+pw;
+        return new ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","administrator","000000",sql).resultSet().getString("aadress");
+    }
+    public String getEmail(String nm,String pw) throws SQLException {
+        String sql="SELECT aid FROM administrators WHERE aname="+nm+" AND apassword="+pw;
+        return new ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","administrator","000000",sql).resultSet().getString("aemail");
     }
     public ResultSet queryClientInfo() throws SQLException {
         String sql="SELECT * FROM clients";
