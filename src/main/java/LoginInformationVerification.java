@@ -52,7 +52,7 @@ public class LoginInformationVerification extends HttpServlet {
         public boolean checkout() throws SQLException {
             getIdentity();
             String sql="SELECT * FROM "+sqlTable;
-            ConnectDatabase connectDatabase=new ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","administrator","000000",sql);
+            ConnectDatabase connectDatabase=new ConnectDatabase("administrator","000000",sql);
             ResultSet rs=connectDatabase.resultSet();
             while(rs.next()){
                 // 通过字段检索

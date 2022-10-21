@@ -1,10 +1,11 @@
 import java.sql.*;
 
 public class ConnectDatabase {
+    String url="jdbc:mysql://localhost:3306/sales_management";
     Connection conn;
     Statement ps;
     ResultSet rs;
-    ConnectDatabase(String url,String user,String password,String sql) throws SQLException {
+    ConnectDatabase(String user,String password,String sql) throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
