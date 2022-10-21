@@ -41,7 +41,7 @@ public class LoginInformationVerification extends HttpServlet {
         }
         try{
             Class.forName("com.mysql.cj.jdbc.Driver");
-            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/sales_management","administrators","000000");
+            conn= DriverManager.getConnection("jdbc:mysql://localhost:3306/sales_management","administrator","000000");
             String sql="SELECT * FROM "+sqlTable;
             ps=conn.createStatement(ResultSet.TYPE_SCROLL_SENSITIVE,ResultSet.CONCUR_READ_ONLY);
             rs=ps.executeQuery(sql);

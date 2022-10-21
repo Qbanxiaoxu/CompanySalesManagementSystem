@@ -1,10 +1,145 @@
-<!DOCTYPE html>
-<html lang="en">
+<!doctype html>
+<html lang = "en">
 <head>
-    <meta charset="UTF-8">
+    <meta charset = "UTF-8">
+    <meta name = "viewport"
+          content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+    <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
     <title>管理员界面</title>
+    <style>
+        /*兼容浏览器*/
+        * {
+            margin: 0;
+            padding: 0;
+        }
+
+        h1{
+            color:white;
+            background-color: cadetblue;
+            text-align: center;
+        }
+        .content {
+            width: 100%;
+            height: 100%;
+        }
+
+        .content-left {
+            width: 25%;
+            height: 800px;
+            background-color: darkcyan;
+            float: left;
+        }
+
+        .content-right {
+            width: 75%;
+            height: 800px;
+            background-color: azure;
+            float: left;
+        }
+        ul{
+            text-decoration: none;
+            text-align:center;
+        }
+        .menu{
+
+        }
+        /*标题一样式*/
+        .menu-title1
+        {
+            font-size: 25px;
+            color:white;
+        }
+        /*标题二样式*/
+        .menu-title2
+        {
+            font-size:20px;
+            color:white;
+        }
+        /*鼠标经过子标题时改变样式*/
+        .menu-title2:hover{
+            color: #FFFFFF;
+            background-color: mediumturquoise;
+        }
+    </style>
+    <script src="js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
+<h1>销售管理平台</h1>
+<div class = "content">
+    <!--左侧导航栏-->
+    <div class = "content-left">
+        <ul class="menu">
+<!--            大标题-->
+            <li class="menu-title1">
+                <p>个人信息</p>
+                <ul>
+                <li class="menu-title2">查看</li>
+                <li class="menu-title2">管理</li>
+                </ul>
+            </li>
+<!--            小标题-->
 
+            <li class="menu-title1">
+                <p>销售人员</p>
+                <ul>
+                <li class="menu-title2">查看</li>
+                <li class="menu-title2">管理</li>
+                </ul>
+            </li>
+
+            <li class="menu-title1">
+                <p>产品</p>
+                <ul>
+                <li class="menu-title2">查看</li>
+                <li class="menu-title2">管理</li>
+                </ul>
+            </li>
+
+            <li class="menu-title1">
+                <p>顾客</p>
+                <ul>
+                <li class="menu-title2">查看</li>
+                <li class="menu-title2">管理</li>
+                </ul>
+            </li>
+
+            <li class="menu-title1">
+                <p>订单</p>
+                <ul>
+                    <li class="menu-title2">查看</li>
+                    <li class="menu-title2">管理</li>
+                </ul>
+            </li>
+
+        </ul>
+    </div>
+
+    <!--右侧内容区-->
+    <div class = "content-right">
+
+    </div>
+</div>
+<!--<script src="http://code.jquery.com/jquery-latest.js"></script>-->
+<!--<script>-->
+<!--    $(function(){-->
+<!--        $(".menu ul").hide();-->
+<!--        $(".menu>li>p").click(function(){-->
+<!--            $(".menu>li>ul").slideUp();-->
+<!--            $(this).next().slideToggle();-->
+<!--        });-->
+<!--    });-->
+<!--</script>-->
+<script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
+<script>
+    $(function(){
+        $(".menu ul").hide();
+        $(".menu>li>p").click(function(){
+            $(".menu>li>ul").slideUp();
+            $(this).next().slideToggle();
+        });
+    });
+</script>
 </body>
 </html>
+
+
