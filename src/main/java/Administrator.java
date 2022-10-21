@@ -15,14 +15,11 @@ public class Administrator {
     Administrator(int id,String nm,String pw,String gd,String em,String addr){
         ID=id;name=nm;password=pw;gender=gd;email=em;address=addr;
     }
-    public void setID(){
-
-    }
-    public void setName(){}
-    public void setPassword(){}
-    public void setGender(){}
-    public void setEmail(){}
-    public void setAddress(){}
+    public void modifyName(){}
+    public void modifyPassword(){}
+    public void modifyGender(){}
+    public void modifyEmail(){}
+    public void modifyAddress(){}
     public int getID() throws SQLException {
         String sql="SELECT aid FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
         return new ConnectDatabase("administrators","000000",sql).resultSet().getInt("aid");

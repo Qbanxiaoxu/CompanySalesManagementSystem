@@ -31,12 +31,30 @@ public class SalesStaff {
         String sql="SELECT semail FROM salesstaffs WHERE sname="+this.name+" AND spassword="+this.password;
         return new ConnectDatabase("sales","000000",sql).resultSet().getString("semail");
     }
-    public void setID(){}
-    public void setName(){}
-    public void setPassword(){}
-    public void setGender(){}
-    public void setEmail(){}
-    public void setAddress(){}
+    public void modifyName() throws SQLException {
+        String sql="UPDATE salesstaffs SET pname="+this.name+" WHERE sid="+String.valueOf(this.ID);
+        new ConnectDatabase("administrator","000000",sql);
+    }
+    public void modifyPassword() throws SQLException {
+        String sql="UPDATE salesstaffs SET password="+this.password+" WHERE sid="+String.valueOf(this.ID);
+        new ConnectDatabase("administrator","000000",sql);
+    }
+    public void modifyGender() throws SQLException {
+        String sql="UPDATE salesstaffs SET sgender="+this.gender+" WHERE sid="+String.valueOf(this.ID);
+        new ConnectDatabase("administrator","000000",sql);
+    }
+    public void modifyEmail() throws SQLException {
+        String sql="UPDATE salesstaffs SET semail="+this.email+" WHERE sid="+String.valueOf(this.ID);
+        new ConnectDatabase("administrator","000000",sql);
+    }
+    public void modifyAddress() throws SQLException {
+        String sql="UPDATE salesstaffs SET ssalary="+this.salary+" WHERE sid="+String.valueOf(this.ID);
+        new ConnectDatabase("administrator","000000",sql);
+    }
+    public void addSalesStaff() throws SQLException {
+        String sql="INSERT INTO salesstaffs (sid,spassword,sname,sgender,sadress,semail,ssalary) VALUES ("+String.valueOf(this.ID)+this.password+this.name+this.gender+this.address+this.email+String.valueOf(this.salary)+")";
+        new ConnectDatabase("administrator","000000",sql);
+    }
     public ResultSet queryProductInfo() throws SQLException {
         String sql="SELECT * FROM products";
         return new ConnectDatabase("sales","000000",sql).resultSet();

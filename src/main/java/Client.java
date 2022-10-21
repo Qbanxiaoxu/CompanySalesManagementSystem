@@ -30,13 +30,16 @@ public class Client {
         String sql="SELECT cemail FROM clients WHERE cname="+this.name+" AND cpassword="+this.password;
         return new ConnectDatabase("client","000000",sql).resultSet().getString("cemail");
     }
+    public void modifyName(){}
+    public void modifyPassword(){}
+    public void modifyGender(){}
+    public void modifyEmail(){}
+    public void modifyAddress(){}
+    public void addClient() throws SQLException {
+        String sql="INSERT INTO clients (cid,cpassword,cname,cgender,cadress,cemail) VALUES ("+String.valueOf(this.ID)+this.password+this.name+this.gender+this.address+this.email+")";
+        new ConnectDatabase("administrator","000000",sql);
+    }
 
-    public void setID(){}
-    public void setName(){}
-    public void setPassword(){}
-    public void setGender(){}
-    public void setEmail(){}
-    public void setAddress(){}
 
     public ResultSet queryProductInfo() throws SQLException {
         String sql="SELECT * FROM products";
