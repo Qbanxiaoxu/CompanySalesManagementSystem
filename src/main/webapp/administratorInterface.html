@@ -61,7 +61,6 @@
             background-color: mediumturquoise;
         }
     </style>
-    <script src="js/jquery-3.6.0.min.js" type="text/javascript" charset="utf-8"></script>
 </head>
 <body>
 <h1>销售管理平台</h1>
@@ -69,12 +68,11 @@
     <!--左侧导航栏-->
     <div class = "content-left">
         <ul class="menu">
-<!--            大标题-->
             <li class="menu-title1">
                 <p>个人信息</p>
                 <ul>
-                <li class="menu-title2">查看</li>
-                <li class="menu-title2">管理</li>
+                <li class="menu-title2" onclick="display_ad()">查看</li>
+                <li class="menu-title2" onclick="manage_ad()">管理</li>
                 </ul>
             </li>
 <!--            小标题-->
@@ -82,32 +80,32 @@
             <li class="menu-title1">
                 <p>销售人员</p>
                 <ul>
-                <li class="menu-title2">查看</li>
-                <li class="menu-title2">管理</li>
+                <li class="menu-title2" onclick="display_sa()">查看</li>
+                <li class="menu-title2" onclick="manage_sa()">管理</li>
                 </ul>
             </li>
 
             <li class="menu-title1">
                 <p>产品</p>
                 <ul>
-                <li class="menu-title2">查看</li>
-                <li class="menu-title2">管理</li>
+                <li class="menu-title2" onclick="display_product()">查看</li>
+                <li class="menu-title2" onclick="manage_product()">管理</li>
                 </ul>
             </li>
 
             <li class="menu-title1">
                 <p>顾客</p>
                 <ul>
-                <li class="menu-title2">查看</li>
-                <li class="menu-title2">管理</li>
+                <li class="menu-title2" onclick="display_client()">查看</li>
+                <li class="menu-title2" onclick="manage_client()">管理</li>
                 </ul>
             </li>
 
             <li class="menu-title1">
                 <p>订单</p>
                 <ul>
-                    <li class="menu-title2">查看</li>
-                    <li class="menu-title2">管理</li>
+                    <li class="menu-title2" onclick="display_order()">查看</li>
+                    <li class="menu-title2" onclick="manage_order()">管理</li>
                 </ul>
             </li>
 
@@ -115,8 +113,8 @@
     </div>
 
     <!--右侧内容区-->
-    <div class = "content-right">
-
+    <div class = "content-right" id="right">
+        <table id="info" align="center" border=1 cellpadding="2" cellspacing="4" style="font-size: 25px" ></table>
     </div>
 </div>
 <script src="http://code.jquery.com/jquery-1.12.4.min.js"></script>
@@ -130,6 +128,9 @@
         });
     });
 </script>
+<script src="display.js">
+</script>
+
 </body>
 </html>
 
