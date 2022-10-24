@@ -1,3 +1,7 @@
+package EntityClass;
+
+import dao.ConnectDatabase;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -9,27 +13,43 @@ public class SalesStaff {
     String address;
     String email;
     int salary;
-    SalesStaff(String nm,String pw){
+    public SalesStaff(String nm, String pw){
         name=nm;password=pw;
     }
     SalesStaff(int id,String nm,String pw,String gd,String em,String addr,int sy){
         ID=id;name=nm;password=pw;gender=gd;email=em;address=addr;salary=sy;
     }
     public int getID() throws SQLException {
-        String sql="SELECT sid FROM salesstaffs WHERE sname="+this.name+" AND spassword="+this.password;
-        return new ConnectDatabase("sales","000000",sql).resultSet().getInt("sid");
+        String sql = "select sid from salesstaffs where sname= '"+ this.name + "' and spassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getInt("sid");
+        }
+        return 0;
     }
     public String getGender() throws SQLException {
-        String sql="SELECT sgender FROM salesstaffs WHERE sname="+this.name+" AND spassword="+this.password;
-        return new ConnectDatabase("sales","000000",sql).resultSet().getString("sgender");
+        String sql = "select sgender from salesstaffs where sname= '"+ this.name + "' and spassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("sgender");
+        }
+        return "error";
     }
     public String  getAddress() throws SQLException {
-        String sql="SELECT sadress FROM salesstaffs WHERE sname="+this.name+" AND spassword="+this.password;
-        return new ConnectDatabase("sales","000000",sql).resultSet().getString("sadress");
+        String sql = "select sadress from salesstaffs where sname= '"+ this.name + "' and spassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("sadress");
+        }
+        return "error";
     }
     public String getEmail() throws SQLException {
-        String sql="SELECT semail FROM salesstaffs WHERE sname="+this.name+" AND spassword="+this.password;
-        return new ConnectDatabase("sales","000000",sql).resultSet().getString("semail");
+        String sql = "select semail from salesstaffs where sname= '"+ this.name + "' and spassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("semail");
+        }
+        return "error";
     }
     public void modifyName() throws SQLException {
         String sql="UPDATE salesstaffs SET pname="+this.name+" WHERE sid="+String.valueOf(this.ID);
@@ -59,7 +79,7 @@ public class SalesStaff {
         String sql="SELECT * FROM products";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("client","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("client","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("sales","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){
@@ -87,7 +107,7 @@ public class SalesStaff {
         String sql="SELECT * FROM orders WHERE osales="+String.valueOf(this.getID());
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("client","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("client","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("sales","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){

@@ -1,3 +1,5 @@
+package dao;
+
 import java.sql.*;
 
 public class ConnectDatabase {
@@ -5,7 +7,7 @@ public class ConnectDatabase {
     Connection conn;
     Statement ps;
     ResultSet rs;
-    ConnectDatabase(String user,String password,String sql) throws SQLException {
+    public ConnectDatabase(String user, String password, String sql) throws SQLException {
         try {
             Class.forName("com.mysql.cj.jdbc.Driver");
         } catch (ClassNotFoundException e) {
