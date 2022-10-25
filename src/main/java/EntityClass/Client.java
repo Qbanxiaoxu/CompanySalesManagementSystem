@@ -1,3 +1,6 @@
+package EntityClass;
+import dao.ConnectDatabase;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -8,27 +11,45 @@ public class Client {
     String gender;
     String address;
     String email;
-    Client(String nm,String pw){
-        name=nm;password=pw;
+    public Client(String nm, String pw){
+        this.name=nm;this.password=pw;
     }
     Client(int id,String nm,String pw,String gd,String em,String addr){
         ID=id;name=nm;password=pw;gender=gd;email=em;address=addr;
     }
+    public String getName(){return this.name;}
+    public String getPassword(){return this.password;}
     public int getID() throws SQLException {
-        String sql="SELECT cid FROM clients WHERE cname="+this.name+" AND cpassword="+this.password;
-        return new ConnectDatabase("client","000000",sql).resultSet().getInt("cid");
+        String sql = "select cid from clients where cname= '"+ this.name + "' and cpassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getInt("cid");
+        }
+        return 0;
     }
     public String getGender() throws SQLException {
-        String sql="SELECT cgender FROM clients WHERE cname="+this.name+" AND cpassword="+this.password;
-        return new ConnectDatabase("client","000000",sql).resultSet().getString("cgender");
+        String sql="select cgender from clients where cname= '"+ this.name + "' and cpassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("cgender");
+        }
+        return "error";
     }
     public String  getAddress() throws SQLException {
-        String sql="SELECT cadress FROM clients WHERE cname="+this.name+" AND cpassword="+this.password;
-        return new ConnectDatabase("client","000000",sql).resultSet().getString("cadress");
+        String sql="select cadress from clients where cname= '"+ this.name + "' and cpassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("cadress");
+        }
+        return "error";
     }
     public String getEmail() throws SQLException {
-        String sql="SELECT cemail FROM clients WHERE cname="+this.name+" AND cpassword="+this.password;
-        return new ConnectDatabase("client","000000",sql).resultSet().getString("cemail");
+        String sql="select cemail from clients where cname= '"+ this.name + "' and cpassword= '" + this.password  +"'";
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("cemail");
+        }
+        return "error";
     }
     public void modifyName(){}
     public void modifyPassword(){}
@@ -45,7 +66,7 @@ public class Client {
         String sql="SELECT * FROM products";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("client","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("client","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("client","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){
@@ -71,13 +92,13 @@ public class Client {
     }
     //public ResultSet queryOrderDetailInfo() throws SQLException {
     //    String sql="SELECT * FROM orderdetails WHERE cid="+String.valueOf(this.getID());
-    //    return new ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","client","000000",sql).resultSet();
+    //    return new dao.ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","client","000000",sql).resultSet();
     //}
     public String queryOrderInfo() throws SQLException {
         String sql="SELECT * FROM orders WHERE oclients="+String.valueOf(this.getID());
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("client","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("client","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("client","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){

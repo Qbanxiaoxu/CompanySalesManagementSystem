@@ -1,3 +1,6 @@
+import EntityClass.Client;
+import dao.ConnectDatabase;
+
 import javax.servlet.ServletException;
 import javax.servlet.annotation.WebServlet;
 import javax.servlet.http.HttpServlet;
@@ -27,12 +30,12 @@ public class LoginInformationVerification extends HttpServlet {
         try {
             if(login.checkout()){
                 if(login.identityNum==0) response.sendRedirect("login.html?error=yes");
-                if (login.identityNum==1) response.sendRedirect("clientInterface.html");
-                if (login.identityNum==2) response.sendRedirect("salesStaffInterface.html");
-                if (login.identityNum==3) response.sendRedirect("administratorInterface.html");
+                if (login.identityNum==3) request.getRequestDispatcher("administratorInterface.jsp").forward(request, response);
+                if (login.identityNum==1) request.getRequestDispatcher("clientInterface.jsp").forward(request, response);
+                if (login.identityNum==2) request.getRequestDispatcher("salesStaffInterface.jsp").forward(request, response);
             }
             else response.sendRedirect("login.html?error=yes");
-        } catch (SQLException e) {
+        } catch (SQLException | ServletException e) {
             throw new RuntimeException(e);
         }
     }

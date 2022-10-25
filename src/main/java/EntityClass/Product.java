@@ -1,3 +1,7 @@
+package EntityClass;
+
+import dao.ConnectDatabase;
+
 import java.sql.SQLException;
 
 public class Product {

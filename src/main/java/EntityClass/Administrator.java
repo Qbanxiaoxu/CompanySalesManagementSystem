@@ -1,3 +1,7 @@
+package EntityClass;
+
+import dao.ConnectDatabase;
+
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -40,7 +44,7 @@ public class Administrator {
         String sql="SELECT * FROM clients";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("administrator","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("administrator","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){
@@ -69,7 +73,7 @@ public class Administrator {
         String sql="SELECT * FROM salesstaffs";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("administrator","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("administrator","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){
@@ -101,7 +105,7 @@ public class Administrator {
         String sql="SELECT * FROM orders";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("administrator","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("administrator","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){
@@ -129,7 +133,7 @@ public class Administrator {
         String sql="SELECT * FROM orderdetails";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("administrator","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("administrator","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){
@@ -154,7 +158,7 @@ public class Administrator {
         String sql="SELECT * FROM products";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
-        //return new ConnectDatabase("administrator","000000",sql).resultSet();
+        //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();
         ResultSet rs=new ConnectDatabase("administrator","000000",sql).resultSet();
         json.append("[");
         while(rs.next()){
