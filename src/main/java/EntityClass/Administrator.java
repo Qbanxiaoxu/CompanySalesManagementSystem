@@ -12,7 +12,7 @@ public class Administrator {
     String gender;
     String address;
     String email;
-    Administrator(){}
+    public Administrator(){}
     Administrator(String nm,String pw){
         name=nm;password=pw;
     }

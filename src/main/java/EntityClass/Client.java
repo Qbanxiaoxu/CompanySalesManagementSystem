@@ -11,6 +11,7 @@ public class Client {
     String gender;
     String address;
     String email;
+    public Client(){}
     public Client(String nm, String pw){
         this.name=nm;this.password=pw;
     }

@@ -13,6 +13,7 @@ public class SalesStaff {
     String address;
     String email;
     int salary;
+    public SalesStaff(){}
     public SalesStaff(String nm, String pw){
         name=nm;password=pw;
     }

@@ -10,6 +10,7 @@ public class Product {
     String description;
     float price;
     int inventory;
+    public Product(){}
     Product(int id,String pname,String dp,float pr,int invent){
         ID=id;productName=pname;description=dp;price=pr;inventory=invent;
     }
