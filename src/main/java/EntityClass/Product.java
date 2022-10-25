@@ -10,8 +10,26 @@ public class Product {
     String description;
     float price;
     int inventory;
-    Product(int id,String pname,String dp,float pr,int invent){
+    public Product(int id,String pname,String dp,float pr,int invent){
         ID=id;productName=pname;description=dp;price=pr;inventory=invent;
+    }
+    public int getID()
+    {
+        return this.ID;
+    }
+    public String getName()
+    {
+        return this.productName;
+    }
+    public String getDescription(){
+        return this.description;
+    }
+    public float getPrice()
+    {
+        return this.price;
+    }
+    public int getInventory(){
+        return this.inventory;
     }
     public void deleteProduct() throws SQLException {
         String sql="DELETE FROM products WHERE pid="+String.valueOf(this.ID);
