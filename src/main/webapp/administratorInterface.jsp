@@ -1,10 +1,14 @@
-<!doctype html>
-<html lang = "en">
+<%--
+  Created by IntelliJ IDEA.
+  User: HP
+  Date: 2022/10/23
+  Time: 12:24
+  To change this template use File | Settings | File Templates.
+--%>
+<%@ page language="java" contentType="text/html; charset=UTF-8"
+         pageEncoding="UTF-8"%>
+<html>
 <head>
-    <meta charset = "UTF-8">
-    <meta name = "viewport"
-          content = "width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
-    <meta http-equiv = "X-UA-Compatible" content = "ie=edge">
     <title>管理员界面</title>
     <style>
         /*兼容浏览器*/
@@ -61,10 +65,8 @@
             color: #FFFFFF;
             background-color: mediumturquoise;
         }
-        .table-style
-        {
-            width:100%;
-            height:100%;
+        .form-style{
+            font-size: 25px;
         }
     </style>
 </head>
@@ -77,41 +79,41 @@
             <li class="menu-title1">
                 <p>个人信息</p>
                 <ul>
-                <li class="menu-title2" onclick="display_ad()">查看</li>
-                <li class="menu-title2" onclick="manage_ad()">管理</li>
+                    <li class="menu-title2" >查看</li>
+                    <li class="menu-title2" >管理</li>
                 </ul>
             </li>
-<!--            小标题-->
+            <!--            小标题-->
 
             <li class="menu-title1">
                 <p>销售人员</p>
                 <ul>
-                <li class="menu-title2" onclick="display_sa()">查看</li>
-                <li class="menu-title2" onclick="manage_sa()">管理</li>
+                    <li class="menu-title2" onclick="show_sa()">查看</li>
+                    <li class="menu-title2" onclick="manage_sa()">管理</li>
                 </ul>
             </li>
 
             <li class="menu-title1">
                 <p>产品</p>
                 <ul>
-                <li class="menu-title2" onclick="display_product()">查看</li>
-                <li class="menu-title2" onclick="manage_product()">管理</li>
+                    <li class="menu-title2" onclick="show_products()">查看</li>
+                    <li class="menu-title2" onclick="manage_products()">管理</li>
                 </ul>
             </li>
 
             <li class="menu-title1">
                 <p>顾客</p>
                 <ul>
-                <li class="menu-title2" onclick="display_client()">查看</li>
-                <li class="menu-title2" onclick="manage_client()">管理</li>
+                    <li class="menu-title2" onclick="show_clients()">查看</li>
+                    <li class="menu-title2" onclick="show_clients()">管理</li>
                 </ul>
             </li>
 
             <li class="menu-title1">
                 <p>订单</p>
                 <ul>
-                    <li class="menu-title2" onclick="display_order()">查看</li>
-                    <li class="menu-title2" onclick="manage_order()">管理</li>
+                    <li class="menu-title2" onclick="show_orders()">查看</li>
+                    <li class="menu-title2" onclick="manage_orders()">管理</li>
                 </ul>
             </li>
 
@@ -119,9 +121,10 @@
     </div>
 
     <!--右侧内容区-->
-    <div class = "content-right" id="right">
-        <div style="display: inline-block">
-            <table id="info" class="table-style" align="center" border=1 cellpadding="10" cellspacing="10" style="font-size: 25px;width:100%;height:100%"></table>
+    <div class = "content-right" id="right" style="width: 100%;height:100%">
+        <div style="display: inline-block" id="display" >
+<%--            <jsp:include page="result.jsp"></jsp>--%>
+<%--            <table id="info" class="table-style" align="center" border=1 cellpadding="10" cellspacing="10" style="font-size: 25px"></table>--%>
         </div>
     </div>
 </div>
@@ -137,8 +140,7 @@
     });
 </script>
 <script src="display.js">
+
 </script>
 </body>
 </html>
-
-
