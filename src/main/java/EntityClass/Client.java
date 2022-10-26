@@ -37,10 +37,10 @@ public class Client {
         return "error";
     }
     public String  getAddress() throws SQLException {
-        String sql="select cadress from clients where cname= '"+ this.name + "' and cpassword= '" + this.password  +"'";
+        String sql="select caddress from clients where cname= '"+ this.name + "' and cpassword= '" + this.password  +"'";
         ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
         if(rs.next()){
-            return rs.getString("cadress");
+            return rs.getString("caddress");
         }
         return "error";
     }
@@ -58,7 +58,7 @@ public class Client {
     public void modifyEmail(){}
     public void modifyAddress(){}
     public void addClient() throws SQLException {
-        String sql="INSERT INTO clients (cid,cpassword,cname,cgender,cadress,cemail) VALUES ("+String.valueOf(this.ID)+this.password+this.name+this.gender+this.address+this.email+")";
+        String sql="INSERT INTO clients (cid,cpassword,cname,cgender,caddress,cemail) VALUES ("+String.valueOf(this.ID)+this.password+this.name+this.gender+this.address+this.email+")";
         new ConnectDatabase("administrator","000000",sql);
     }
 
@@ -96,7 +96,7 @@ public class Client {
     //    return new dao.ConnectDatabase("jdbc:mysql://localhost:3306/sales_management","client","000000",sql).resultSet();
     //}
     public String queryOrderInfo() throws SQLException {
-        String sql="SELECT * FROM orders WHERE oclients="+String.valueOf(this.getID());
+        String sql="SELECT * FROM orders WHERE oclients="+String.valueOf(this.ID);
         StringBuilder json=new StringBuilder();
         String jsonStr="";
         //return new dao.ConnectDatabase("client","000000",sql).resultSet();

@@ -37,10 +37,10 @@ public class SalesStaff {
         return "error";
     }
     public String  getAddress() throws SQLException {
-        String sql = "select sadress from salesstaffs where sname= '"+ this.name + "' and spassword= '" + this.password  +"'";
+        String sql = "select saddress from salesstaffs where sname= '"+ this.name + "' and spassword= '" + this.password  +"'";
         ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
         if(rs.next()){
-            return rs.getString("sadress");
+            return rs.getString("saddress");
         }
         return "error";
     }
@@ -73,7 +73,7 @@ public class SalesStaff {
         new ConnectDatabase("administrator","000000",sql);
     }
     public void addSalesStaff() throws SQLException {
-        String sql="INSERT INTO salesstaffs (sid,spassword,sname,sgender,sadress,semail,ssalary) VALUES ("+String.valueOf(this.ID)+this.password+this.name+this.gender+this.address+this.email+String.valueOf(this.salary)+")";
+        String sql="INSERT INTO salesstaffs (sid,spassword,sname,sgender,saddress,semail,ssalary) VALUES ("+String.valueOf(this.ID)+this.password+this.name+this.gender+this.address+this.email+String.valueOf(this.salary)+")";
         new ConnectDatabase("administrator","000000",sql);
     }
     public String queryProductInfo() throws SQLException {
