@@ -123,4 +123,33 @@ public class Client {
         jsonStr=json.substring(0,json.length()-1)+"]";
         return jsonStr;
     }
+
+    public String findProductInfo(int productID) throws SQLException {
+        String sql="SELECT * FROM products WHERE pid="+productID;
+        StringBuilder json=new StringBuilder();
+        String jsonStr="";
+        //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();
+        ResultSet rs=new ConnectDatabase("client","000000",sql).resultSet();
+        json.append("[");
+        while(rs.next()){
+            int pID=rs.getInt("pid");
+            String pName=rs.getString("pname");
+            String pDescription=rs.getString("pdescription");
+            float pPrice=rs.getFloat("pprice");
+            int pInventory=rs.getInt("pinventory");
+            json.append("{\"pid\":");
+            json.append(pID);
+            json.append(",\"pname\":\"");
+            json.append(pName);
+            json.append("\",\"pdescription\":\"");
+            json.append(pDescription);
+            json.append("\",\"pprice\":");
+            json.append(pPrice);
+            json.append(",\"pinventory\":");
+            json.append(pInventory);
+            json.append("},");
+        }
+        jsonStr=json.substring(0,json.length()-1)+"]";
+        return jsonStr;
+    }
 }

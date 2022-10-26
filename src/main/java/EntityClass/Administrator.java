@@ -13,7 +13,7 @@ public class Administrator {
     String address;
     String email;
     public Administrator(){}
-    Administrator(String nm,String pw){
+    public Administrator(String nm, String pw){
         name=nm;password=pw;
     }
     Administrator(int id,String nm,String pw,String gd,String em,String addr){
@@ -25,20 +25,40 @@ public class Administrator {
     public void modifyEmail(){}
     public void modifyAddress(){}
     public int getID() throws SQLException {
-        String sql="SELECT aid FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
-        return new ConnectDatabase("administrators","000000",sql).resultSet().getInt("aid");
+        String sql = "select aid from administrators where aname= '"+ this.name + "' and apassword= '" + this.password  +"'";
+        //return new ConnectDatabase("administrator","000000",sql).resultSet().getInt("aid");
+        ResultSet rs=new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getInt("aid");
+        }
+        return 0;
     }
     public String getGender() throws SQLException {
-        String sql="SELECT agender FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
-        return new ConnectDatabase("administrator","000000",sql).resultSet().getString("agender");
+        String sql = "select agender from administrators where aname= '"+ this.name + "' and apassword= '" + this.password  +"'";
+        //return new ConnectDatabase("administrator","000000",sql).resultSet().getString("agender");
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("agender");
+        }
+        return "error";
     }
     public String  getAddress() throws SQLException {
-        String sql="SELECT aaddress FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
-        return new ConnectDatabase("administrator","000000",sql).resultSet().getString("aaddress");
+        String sql = "select aaddress from administrators where aname= '"+ this.name + "' and apassword= '" + this.password  +"'";
+        //return new ConnectDatabase("administrator","000000",sql).resultSet().getString("aaddress");
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("aaddress");
+        }
+        return "error";
     }
     public String getEmail() throws SQLException {
-        String sql="SELECT aid FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
-        return new ConnectDatabase("administrator","000000",sql).resultSet().getString("aemail");
+        String sql = "select aemail from administrators where aname= '"+ this.name + "' and apassword= '" + this.password  +"'";
+        //return new ConnectDatabase("administrator","000000",sql).resultSet().getString("aemail");
+        ResultSet rs= new ConnectDatabase("administrator","000000",sql).resultSet();
+        if(rs.next()){
+            return rs.getString("aemail");
+        }
+        return "error";
     }
     public String queryClientInfo() throws SQLException {
         String sql="SELECT * FROM clients";
@@ -156,6 +176,34 @@ public class Administrator {
     }
     public String queryProductInfo() throws SQLException {
         String sql="SELECT * FROM products";
+        StringBuilder json=new StringBuilder();
+        String jsonStr="";
+        //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();
+        ResultSet rs=new ConnectDatabase("administrator","000000",sql).resultSet();
+        json.append("[");
+        while(rs.next()){
+            int pID=rs.getInt("pid");
+            String pName=rs.getString("pname");
+            String pDescription=rs.getString("pdescription");
+            float pPrice=rs.getFloat("pprice");
+            int pInventory=rs.getInt("pinventory");
+            json.append("{\"pid\":");
+            json.append(pID);
+            json.append(",\"pname\":\"");
+            json.append(pName);
+            json.append("\",\"pdescription\":\"");
+            json.append(pDescription);
+            json.append("\",\"pprice\":");
+            json.append(pPrice);
+            json.append(",\"pinventory\":");
+            json.append(pInventory);
+            json.append("},");
+        }
+        jsonStr=json.substring(0,json.length()-1)+"]";
+        return jsonStr;
+    }
+    public String findProductInfo(int productID) throws SQLException {
+        String sql="SELECT * FROM products WHERE pid="+productID+"s";
         StringBuilder json=new StringBuilder();
         String jsonStr="";
         //return new dao.ConnectDatabase("administrator","000000",sql).resultSet();

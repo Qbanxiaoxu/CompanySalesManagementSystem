@@ -18,7 +18,7 @@
             border-right:black solid 1px;
             border-top: black solid 1px;
         }
-        #table{
+        #personalInfoTable{
             width: 400px;
             height: 250px;
         }
@@ -40,7 +40,15 @@
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }%>
-<table id="table" class="border">
+<input type="hidden" id="username" name="username" value="<%=username%>">
+<input type="hidden" id="password" name="password" value="<%=password%>">
+<input type="hidden" id="identity" name="identity" value="<%=identity%>">
+<input type="hidden" id="id" name="id" value="<%=ID%>">
+<input type="hidden" id="gender" name="gender" value="<%=gender%>">
+<input type="hidden" id="email" name="email" value="<%=email%>">
+<input type="hidden" id="address" name="address" value="<%=address%>">
+
+<table id="personalInfoTable" class="border">
     <tr><th>个人信息</th></tr>
     <tr><td>工号</td><td><%out.println(ID);%></td></tr>
     <tr><td>名字</td><td><%out.println(username);%></td></tr>

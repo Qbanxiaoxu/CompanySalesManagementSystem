@@ -57,5 +57,40 @@ public class ProductInformationManagement extends HttpServlet {
                     break;
             }
         }
+        if(operation.equals("findProductInformation")){
+            int productID= Integer.parseInt(request.getParameter("productID"));
+            switch (identity) {
+                case "client":
+                    Client client = new Client();
+                    try {
+                        String productJson = client.findProductInfo(productID);
+                        out.print(productJson);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "salesStaff":
+                    SalesStaff salesStaff = new SalesStaff();
+                    try {
+                        String productJson = salesStaff.findProductInfo(productID);
+                        out.print(productJson);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "administrator":
+                    Administrator administrator = new Administrator();
+                    try {
+                        String productJson = administrator.findProductInfo(productID);
+                        out.print(productJson);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                default:
+                    out.print("error");
+                    break;
+            }
+        }
     }
 }
