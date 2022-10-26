@@ -12,7 +12,7 @@ public class Administrator {
     String gender;
     String address;
     String email;
-    Administrator(){}
+    public Administrator(){}
     Administrator(String nm,String pw){
         name=nm;password=pw;
     }
@@ -33,8 +33,8 @@ public class Administrator {
         return new ConnectDatabase("administrator","000000",sql).resultSet().getString("agender");
     }
     public String  getAddress() throws SQLException {
-        String sql="SELECT aadress FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
-        return new ConnectDatabase("administrator","000000",sql).resultSet().getString("aadress");
+        String sql="SELECT aaddress FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
+        return new ConnectDatabase("administrator","000000",sql).resultSet().getString("aaddress");
     }
     public String getEmail() throws SQLException {
         String sql="SELECT aid FROM administrators WHERE aname="+this.name+" AND apassword="+this.password;
@@ -52,7 +52,7 @@ public class Administrator {
             //String cPassword=rs.getString("cpassword");
             String cName=rs.getString("cname");
             String cGender=rs.getString("cgender");
-            String cAddress=rs.getString("cadress");
+            String cAddress=rs.getString("caddress");
             String cEmail=rs.getString("cemail");
             json.append("{\"cid\":");
             json.append(cID);
@@ -62,7 +62,7 @@ public class Administrator {
             json.append(cGender);
             json.append("\",\"cemail\":\"");
             json.append(cEmail);
-            json.append("\",\"cadress\":\"");
+            json.append("\",\"caddress\":\"");
             json.append(cAddress);
             json.append("\"},");
         }

@@ -11,6 +11,18 @@
 <html>
 <head>
     <title>销售人员界面</title>
+    <style>
+        .border{
+            border-bottom: black solid 1px;
+            border-left: black solid 1px;
+            border-right:black solid 1px;
+            border-top: black solid 1px;
+        }
+        #table{
+            width: 400px;
+            height: 250px;
+        }
+    </style>
 </head>
 <body>
 <%! int ID;String username;String password;String identity;String gender;String email;String address;
@@ -28,7 +40,7 @@
     } catch (SQLException e) {
         throw new RuntimeException(e);
     }%>
-<table>
+<table id="table" class="border">
     <tr><th>个人信息</th></tr>
     <tr><td>工号</td><td><%out.println(ID);%></td></tr>
     <tr><td>名字</td><td><%out.println(username);%></td></tr>
@@ -36,5 +48,6 @@
     <tr><td>邮箱</td><td><%out.println(email);%></td></tr>
     <tr><td>地址</td><td><%out.println(address);%></td></tr>
 </table>
+
 </body>
 </html>

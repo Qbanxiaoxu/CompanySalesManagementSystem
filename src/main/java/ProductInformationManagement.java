@@ -1,50 +1,61 @@
+import EntityClass.Administrator;
+import EntityClass.Client;
 import EntityClass.Product;
-import dao.ConnectDatabase;
-import dao.Dao;
+import EntityClass.SalesStaff;
 
-import java.sql.Connection;
-import java.sql.PreparedStatement;
-import java.sql.ResultSet;
+import javax.servlet.annotation.WebServlet;
+import javax.servlet.http.HttpServlet;
+import javax.servlet.http.HttpServletRequest;
+import javax.servlet.http.HttpServletResponse;
+import java.io.IOException;
+import java.io.PrintWriter;
 import java.sql.SQLException;
-import java.util.ArrayList;
-import java.util.List;
 
-public class ProductInformationManagement {
-    public static Product getInformation(int id){
-        Connection conn;
-        String pname=null;
-        String dp=null;
-        float pr=0;
-        int inventory=0;
-        try{
-            conn= Dao.getConnection();
-            PreparedStatement ps=conn.prepareStatement("select *from products where pid =?") ;
-            ps.setInt(1,id);
-            ResultSet rs=ps.executeQuery();
-            while(rs.next()){
-                pname=rs.getString("pname");
-                dp=rs.getString("pdescription");
-                pr=rs.getFloat("pprice");
-                inventory=rs.getInt("pinventory");
-
-            }
-            Dao.close(rs,ps,conn);
-        } catch (SQLException e) {
-            e.printStackTrace();
-        }
-        Product product=new Product(id,pname,dp,pr,inventory);
-        return product;
+@WebServlet("/ProductInformationManagement")
+public class ProductInformationManagement extends HttpServlet {
+    @Override
+    public void doGet(HttpServletRequest request,HttpServletResponse response) throws IOException {
+        doPost(request,response);
     }
-    public static List<Product> getAll() throws SQLException {
-        Connection conn;
-        conn=Dao.getConnection();
-        PreparedStatement ps=conn.prepareStatement("select * from products");
-        ResultSet rs=ps.executeQuery();
-        List<Product> allProducts=new ArrayList<Product>();
-        while(rs.next()){
-            allProducts.add(new Product(rs.getInt("pid"),rs.getString("pname"),rs.getString("pdescription"),rs.getFloat("pprice"),rs.getInt("pinventory")));
+    @Override
+    public void doPost(HttpServletRequest request, HttpServletResponse response) throws IOException {
+        response.setContentType("text/html;charset=UTF-8");
+        PrintWriter out=response.getWriter();
+        String operation=request.getParameter("operation");
+        String identity=request.getParameter("identity");
+        if(operation.equals("queryProductInformation")){
+            switch (identity) {
+                case "client":
+                    Client client = new Client();
+                    try {
+                        String productJson = client.queryProductInfo();
+                        out.print(productJson);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "salesStaff":
+                    SalesStaff salesStaff = new SalesStaff();
+                    try {
+                        String productJson = salesStaff.queryProductInfo();
+                        out.print(productJson);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                case "administrator":
+                    Administrator administrator = new Administrator();
+                    try {
+                        String productJson = administrator.queryProductInfo();
+                        out.print(productJson);
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                default:
+                    out.print("error");
+                    break;
+            }
         }
-        Dao.close(rs,ps,conn);
-        return allProducts;
     }
 }
