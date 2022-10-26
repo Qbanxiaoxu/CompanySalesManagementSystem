@@ -58,13 +58,12 @@
 <input type="hidden" id="address" name="address" value="<%=address%>">
 <table id="personalInfoTable" class="border">
     <tr><th>个人信息</th></tr>
-    <tr><td>工号</td><td><%out.println(ID);%></td></tr>
+    <tr><td>工号</td><td><%=username%></td></tr>
     <tr><td>名字</td><td><%out.println(username);%></td></tr>
     <tr><td>性别</td><td><%out.println(gender);%></td></tr>
     <tr><td>邮箱</td><td><%out.println(email);%></td></tr>
     <tr><td>地址</td><td><%out.println(address);%></td></tr>
 </table>
-
 <div id="show">
     <div id="optionBox">
         <input type="button" id="queryProductInformation" value="查询产品信息">

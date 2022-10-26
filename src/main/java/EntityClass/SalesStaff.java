@@ -2,6 +2,8 @@ package EntityClass;
 
 import dao.ConnectDatabase;
 
+import java.sql.Connection;
+import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.SQLException;
 
@@ -131,5 +133,22 @@ public class SalesStaff {
         }
         jsonStr=json.substring(0,json.length()-1)+"]";
         return jsonStr;
+    }
+
+    public String insertProductInfo(String name,String pdescription,float price,int inventory) throws SQLException {
+        String sql="insert into products(pname,pdescription,pprice,pinventory) values("+name+","
+                +pdescription+","+price+","+inventory+")";
+            Connection conn =new ConnectDatabase("sales","000000",sql).connection();
+            PreparedStatement ps=conn.prepareStatement(sql);
+            ps.executeUpdate();
+            conn.close();
+    }
+
+    public void deleteProductInfo(int id) throws SQLException {
+        String sql="delete from products where pid=id";
+        Connection conn =new ConnectDatabase("sales","000000",sql).connection();
+        PreparedStatement ps=conn.prepareStatement(sql);
+        ps.executeUpdate();
+        conn.close();
     }
 }

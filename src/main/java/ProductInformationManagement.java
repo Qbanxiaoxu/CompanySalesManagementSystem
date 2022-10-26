@@ -57,5 +57,61 @@ public class ProductInformationManagement extends HttpServlet {
                     break;
             }
         }
+        else if(operation.equals("insertProductInformation")){
+            switch (identity) {
+                case "salesStaff":{
+                    SalesStaff salesStaff = new SalesStaff();
+                    try {
+                        salesStaff.insertProductInfo();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+
+                case "administrator":{
+                    Administrator administrator = new Administrator();
+                    try {
+                        administrator.insertProductInfo();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+
+                default:{
+                    out.print("error");
+                    break;
+                }
+
+            }
+        }
+        else if(operation.equals("deletdProductInformation")){
+            switch (identity){
+                case "salesStaff":{
+                    SalesStaff salesStaff=new SalesStaff();
+                    try {
+                        salesStaff.insertProductInfo();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+                case "administrator":{
+                    Administrator administrator=new Administrator();
+                    try {
+                        administrator.deleteProductInfo();
+                    } catch (SQLException e) {
+                        throw new RuntimeException(e);
+                    }
+                    break;
+                }
+                default:{
+                    out.println("error");
+                    break;
+                }
+
+            }
+        }
     }
 }
